@@ -1,9 +1,6 @@
-import home_class from '../app/controllers/home_class'
-import * as home_function from '../app/controllers/home_function'
+import * as home_controller from '../app/controllers/home_controller'
 
 module.exports = (route) => {
-	// class style
-	route.get('/', home_class.index)
-	// functional style
-	route.get('/', home_function.index)
+	// defined routes
+	route.get('/', home_controller.index)
 }
