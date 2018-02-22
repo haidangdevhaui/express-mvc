@@ -3,11 +3,14 @@ import dotenv from 'dotenv'
 import express from 'express'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
+import routes from '../routes/web'
+import core_helpers from './core_helpers'
+
 // using .env file mapping to process.env
 dotenv.config()
 
 // init core helper functions
-require('./core_helpers')
+core_helpers()
 
 // connect database
 mongoose.connect(config('database.mongo'));
@@ -23,6 +26,6 @@ app.use('/', express.static('public'))
 app.set('view engine', 'ejs')
 
 // booting routes
-require('../routes/web')(app)
+routes(app)
 
 export default app

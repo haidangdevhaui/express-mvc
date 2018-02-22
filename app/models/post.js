@@ -12,9 +12,7 @@ let schema = {
  * defined static methods
  */
 let statics = {
-	getAll: function() {
-		return this.find()
-	}
+	
 }
 
 /**

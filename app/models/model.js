@@ -5,7 +5,9 @@ import mongoose, { Schema } from 'mongoose'
  * @type {Object}
  */
 let sharedStatics = {
-
+	getAll: function() {
+		return this.find()
+	}
 }
 
 /**
