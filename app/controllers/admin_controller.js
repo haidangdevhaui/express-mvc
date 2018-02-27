@@ -1,3 +1,3 @@
 export function index(request, response) {
-	response.send('admin');
+	response.render('admin/index');
 }
