@@ -4,7 +4,8 @@
   "description": "base struct of express mvc project",
   "main": "bin/server.js",
   "scripts": {
-    "start": "nodemon server.js --exec babel-node --presets es2015,stage-2"
+    "dev": "nodemon server.js --exec babel-node --presets es2015,stage-2",
+    "start": "babel-node server.js --presets es2015,stage-2"
   },
   "repository": {
     "type": "git",
