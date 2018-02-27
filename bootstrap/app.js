@@ -3,6 +3,8 @@ import dotenv from 'dotenv'
 import express from 'express'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
+import expressLayouts from 'express-ejs-layouts'
+
 import routes from '../routes/web'
 import core_helpers from './core_helpers'
 
@@ -25,6 +27,11 @@ app.use('/', express.static('public'))
 // set view as ejs
 app.set('view engine', 'ejs')
 
+// set layouts
+// app.set('layout', true)
+app.set('layout', 'admin/layout')
+app.use(expressLayouts)
+app.set("layout extractScripts", true)
 // booting routes
 routes(app)
 
