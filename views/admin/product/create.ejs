@@ -1,40 +1,14 @@
  <!-- Page-Title -->
 <div class="row">
     <div class="col-sm-12">
-        <!-- <div class="btn-group pull-right m-t-15">
-            <button type="button" class="btn btn-custom dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Settings <span class="m-l-5"><i class="fa fa-cog"></i></span></button>
-            <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-            </ul>
-        </div> -->
+        
         <h4 class="page-title" style="text-align: center;">Thêm mới giao diện</h4>
     </div>
 </div>
-
-
 <div class="row">
     <div class="col-lg-3"></div>
     <div class="col-lg-6">
         <div class="card-box">
-            <!-- <div class="dropdown pull-right">
-                <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                    <i class="zmdi zmdi-more-vert"></i>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                </ul>
-            </div> -->
-
-            <!-- <h4 class="header-title m-t-0 m-b-30">Basic Form</h4> -->
-
             <form action="#" method="" data-parsley-validate novalidate>
                 <div class="form-group">
                     <label for="userName">Ảnh</label>
@@ -50,15 +24,16 @@
                     <input type="text" name="alias" value="" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
-                    <label for="">Chọn dự án</label>
-                    <select name="category_project" class="form-control">
-                        <option value="">--Chọn dự án--</option>
-                        <option value="">Dự án 1</option>
-                        <option value="">Dự án 2</option>
-                        <option value="">Dự án 3</option>
-                       
+                    <label for="">Chọn dự án</label>                   
+                    <select class="selectpicker" data-show-subtext="true" class="form-control" data-live-search="true">  <option>--Chọn dự án--</option>
+                        <option data-subtext="Rep California">Tom Foolery</option>
+                        <option data-subtext="Sen California">Bill Gordon</option>
+                        <option data-subtext="Sen Massacusetts">Elizabeth Warren</option>
+                        <option data-subtext="Rep Alabama">Mario Flores</option>
+                        <option data-subtext="Rep Alaska">Don Young</option>
+                        <option data-subtext="Rep California" disabled="disabled">Marvin Martinez</option>
                     </select>
-                </div>
+                </div>     
                 <div class="form-group">
                     <label for="userName">Số thứ tự</label>
                     <input type="number" name="stt" placeholder="" class="form-control" style="width: 100px" value="" id="">
@@ -68,7 +43,7 @@
                         Thêm
                     </button>
                     <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
-                        Cancel
+                        Hủy
                     </button>
                 </div>
 

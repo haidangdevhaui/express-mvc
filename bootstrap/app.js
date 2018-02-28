@@ -29,8 +29,9 @@ app.set('view engine', 'ejs')
 
 // set layouts
 // app.set('layout', true)
-app.set('layout', 'admin/layout')
 app.use(expressLayouts)
+app.set('layout', 'admin/layout')
+
 
 // booting routes
 routes(app)

@@ -16,6 +16,7 @@ export default function(route) {
 	// adminRoutes.get('/', admin_controller.index)
 
 	// for not prefix
+	// route admin
 	route.use('/admin*', admin_authentication);
 	route.get('/admin', admin_controller.index);
 	route.get('/admin/category', category_controller.index);
