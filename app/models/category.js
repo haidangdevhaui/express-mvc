@@ -1,5 +1,5 @@
 import model from './model'
-
+import { Schema } from 'mongoose'
 /**
  * defined schema
  * @type {Object}
@@ -19,7 +19,10 @@ let schema = {
  * defined static methods
  */
 let statics = {
-	
+	create(data) {
+		this.name = data.name
+		return this.save();
+	}
 }
 
 /**

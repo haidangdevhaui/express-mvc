@@ -1,5 +1,5 @@
 import model from './model'
-
+import { Schema } from 'mongoose'
 /**
  * defined schema
  * @type {Object}
