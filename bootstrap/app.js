@@ -31,7 +31,7 @@ app.set('view engine', 'ejs')
 // app.set('layout', true)
 app.set('layout', 'admin/layout')
 app.use(expressLayouts)
-app.set("layout extractScripts", true)
+
 // booting routes
 routes(app)
 

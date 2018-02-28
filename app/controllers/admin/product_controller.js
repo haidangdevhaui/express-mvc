@@ -1,14 +1,14 @@
 export function index(request, response){
-	response.render('admin/category/index');
+	response.render('admin/product/index');
 }
 export function create(request, response){
-	response.render('admin/category/create');
+	response.render('admin/product/create');
 }
 export function postCreate(request, response){
-	response.send('method post category');
+	response.send('method post create product');
 }
 export function edit(request, response){
-	response.render('admin/category/edit');
+	response.render('admin/product/edit');
 }
 // export function postEdit(request, response){
 // 	response.send('method post edit product');
