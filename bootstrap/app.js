@@ -29,7 +29,7 @@ app.set('view engine', 'ejs')
 
 // set layouts
 // app.set('layout', true)
-app.set('layout', 'admin/layout')
+app.set('layout', 'front/layout')
 app.use(expressLayouts)
 
 // booting routes
