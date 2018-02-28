@@ -7,5 +7,5 @@ import Post from '../models/post'
  */
 export async function index(request, response) {
 	let posts = await Post.getAll();
-	return response.render('index', { posts })
+	return response.render('front/index', { posts })
 }

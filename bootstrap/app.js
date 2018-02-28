@@ -15,7 +15,14 @@ dotenv.config()
 core_helpers()
 
 // connect database
-mongoose.connect(config('database.mongo'));
+mongoose.connect(config('database.mongo')).then(
+	() => {
+		console.log('Connect DB successfully');
+	},
+	(err) => {
+		console.log('Connect DB failed')
+	}
+);
 
 let app = express()
 
@@ -29,11 +36,8 @@ app.set('view engine', 'ejs')
 
 // set layouts
 // app.set('layout', true)
-
 app.set('layout', 'front/layout')
-
 app.use(expressLayouts)
-app.set('layout', 'admin/layout')
 
 
 // booting routes

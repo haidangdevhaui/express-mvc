@@ -15,11 +15,12 @@ let schema = {
 	image: {
 		type: String
 	},
+	categoryId: Schema.ObjectId,
 	created_at: {
 		type: Date,
 		default: Date.now
 	},
-	categoryId: Schema.ObjectId,
+	
 }
 
 /**

@@ -10,6 +10,7 @@ export default function(route) {
 	// defined routes
 	route.get('/', time_logging, home_controller.index)
 
+
 	// for using prefix and middleware router
 	// const adminRoutes = Router();
 	// route.use('/admin', admin_authentication, adminRoutes)
@@ -28,6 +29,7 @@ export default function(route) {
 	route.get('/admin', admin_controller.index);
 	route.get('/admin/category', category_controller.index);
 	route.get('/admin/category/create', category_controller.create);
+	route.post('/admin/category/create', category_controller.postCreate);
 	route.get('/admin/category/edit/:id', category_controller.edit);
 	route.get('/admin/product', product_controller.index);
 	route.get('/admin/product/create', product_controller.create);
