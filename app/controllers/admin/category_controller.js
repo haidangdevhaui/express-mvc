@@ -62,8 +62,40 @@ export function edit(request, response) {
 	});    
 }
 export function postEdit(request, response){
-	// let conditions = {},
-	
+	let conditions = {};
+	if(mongoose.Types.ObjectId.isValid(request.body.cateId) == true){
+        conditions._id = mongoose.Types.ObjectId(request.body.cateId);
+    }else{
+        response.json({
+            result: "faild",
+            data: {},
+            message: "you must enter your cate_id to update"
+        });
+    }
+	let newValues = {};
+	if(request.body.name && request.body.name.length > 1){
+        newValues.name = request.body.name;
+    }
+    const options = {
+        new: true,
+        multi: true
+    }
+    Category.findOneAndUpdate(conditions, {$set: newValues}, options, (err, category) => {
+        // if(err){
+        //     res.json({
+        //         result: "fail",
+        //         data: {},
+        //         message: "update category faild"
+        //     });
+        // }else{
+        //     res.json({
+        //         result: "ok",
+        //         data: category,
+        //         message: "update category successfully"
+        //     });
+        // }
+        response.redirect("back");
+    });
 }
 export function deleteCategory(request, response) {
 	var id = mongoose.Types.ObjectId(request.params.id);	

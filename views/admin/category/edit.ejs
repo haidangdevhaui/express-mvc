@@ -11,6 +11,7 @@
             <form action="/admin/category/edit" method="post" data-parsley-validate novalidate>
                 <div class="form-group">
                     <label for="userName">Tên*</label>
+                    <input type="hidden" name="cateId" value="<%= data._id %>" placeholder="">
                     <input type="text" name="name" parsley-trigger="change" required
                            placeholder="Enter project name" class="form-control" value="<%= data.name %>" id="">
                 </div>               
