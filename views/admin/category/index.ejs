@@ -31,11 +31,18 @@
                 </thead>
 
                 <tbody>
-                    <% for(var i = 1; i< data.length(); i++){ %> 
-                        <%= data[i] %>
+                    <% for(var i = 0; i < data.length; i++){ %> 
+                        <tr>
+                            <td><%= i + 1 %></td>
+                            <td><%= data[i].name %></td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a class="btn btn-warning" href="/admin/category/edit/<%= data[i]._id %>">edit</a>
+                                    <a class="btn btn-danger" href="/admin/category/delete/<%= data[i]._id %>">delete</a>
+                                </div>
+                            </td>
+                        </tr>
                     <% } %>
-                    
-                    
                 </tbody>
             </table>
         </div>
