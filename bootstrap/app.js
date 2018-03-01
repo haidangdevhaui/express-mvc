@@ -9,7 +9,7 @@ import routes from '../routes/web'
 import core_helpers from './core_helpers'
 var flash = require('express-flash-messages');
 var cookieParser = require('cookie-parser');
-
+var dateFormat = require('dateformat');
 // using .env file mapping to process.env
 dotenv.config()
 

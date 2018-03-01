@@ -9,10 +9,17 @@ let schema = {
 		type: String,
 		require: true
 	},
+	status: {
+        type:[{
+            type:String,
+            enum: ['available', 'unavailable']
+        }],
+        default: ['available']
+    },
 	created_at: {
 		type: Date,
 		default: Date.now
-	}
+	},
 }
 
 /**

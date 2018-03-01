@@ -25,12 +25,15 @@ export default function(route) {
 		route.set('layout', 'admin/layout');
 		return next();
 	});
-
+	// route category
 	route.get('/admin', admin_controller.index);
 	route.get('/admin/category', category_controller.index);
 	route.get('/admin/category/create', category_controller.create);
 	route.post('/admin/category/create', category_controller.postCreate);
 	route.get('/admin/category/edit/:id', category_controller.edit);
+	route.post('/admin/category/edit', category_controller.postEdit);
+	route.get('/admin/category/delete/:id', category_controller.deleteCategory);
+	// route product
 	route.get('/admin/product', product_controller.index);
 	route.get('/admin/product/create', product_controller.create);
 	route.get('/admin/product/edit/:id', product_controller.edit);

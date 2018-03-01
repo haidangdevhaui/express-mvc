@@ -25,6 +25,7 @@
                     <tr>
                         <th>STT</th>
                         <th>Name</th>
+                        <th>Created_at</th>
                         <th>Action</th>
                         
                     </tr>
@@ -34,6 +35,7 @@
                         <tr>
                             <td><%= i + 1 %></td>
                             <td><%= data[i].name %></td>
+                            <td><%= data[i].created_at %></td>
                             <td>
                                 <div class="btn-group btn-group-sm">
                                     <a class="btn btn-warning" href="/admin/category/edit/<%= data[i]._id %>">edit</a>
