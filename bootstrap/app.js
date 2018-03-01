@@ -7,6 +7,8 @@ import expressLayouts from 'express-ejs-layouts'
 
 import routes from '../routes/web'
 import core_helpers from './core_helpers'
+var flash = require('express-flash-messages');
+var cookieParser = require('cookie-parser');
 
 // using .env file mapping to process.env
 dotenv.config()
@@ -27,8 +29,10 @@ mongoose.connect(config('database.mongo')).then(
 let app = express()
 
 // using body parser for form data
-app.use(bodyParser.json())
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(flash());
 // static files in public
 app.use('/', express.static('public'))
 // set view as ejs

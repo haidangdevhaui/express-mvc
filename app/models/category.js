@@ -20,7 +20,7 @@ let schema = {
  */
 let statics = {
 	create(data) {
-		this.name = data.name
+		this.name = data;
 		return this.save();
 	}
 }
