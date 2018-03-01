@@ -4,7 +4,7 @@ var Category = require('../../models/category').default;
 export function index(request, response){
 	var data = Category.find();
 	
-	response.render('admin/category/index',{title: 'List category', data: data});
+	response.render('admin/category/index',{title: 'List category', data:data});
 }
 export function create(request, response){
 	response.render('admin/category/create');
