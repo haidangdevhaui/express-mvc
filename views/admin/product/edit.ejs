@@ -21,7 +21,7 @@
                 <div class="form-group">
                     <label for="userName">Tên*</label>
                     <input type="text" name="name" parsley-trigger="change" required
-                           placeholder="Nhập tên" class="form-control" value="<%= data.name %>" id="">
+                           placeholder="Nhập tên" class="form-control" value="<%= product.name %>" id="">
                 </div>
                 <div class="form-group">
                     <label for="">Đường dẫn</label>
@@ -31,11 +31,10 @@
                 <div class="form-group">
                     <label for="">Chọn dự án</label>
                     <select name="category_project" class="form-control">
-                        <option value="<%= data.categoryId._id%>"><%= data.categoryId.name %></option>
-                        
-                        
-                        
-                       
+                        <option value="">---Chon danh muc---</option>
+                        <% for (var i = 0; i < categories.length; i++) { %>
+                           <option value="<%= categories[i]._id %>" <%= product.category_id._id.equals(categories[i]._id) ? 'selected' : '' %>><%= categories[i].name %></option> 
+                        <% } %>
                     </select>
                 </div>
                 <div class="form-group">

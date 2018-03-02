@@ -35,15 +35,25 @@ export function postCreate(request, response){
 		response.redirect('/admin/product');
 	});
 }
-export function edit(request, response){
-	var product_id = request.params.id;
-	Product.findOne({_id: product_id}).populate('categoryId').exec((err, result) => {
-		if(err) console.log(err + '');
-		response.render('admin/product/edit', {
-			data: result,
-			title: "Update"
-		});
-		// console.log(result.categoryId.name);
+
+/**
+ * edit product action
+ * @param  {object} request
+ * @param  {object} response
+ */
+export async function edit(request, response){
+	let productId = request.params.id;
+
+	let product = await Product
+		.findById(productId)
+		.populate({ path: 'category_id', select: 'name' });
+
+	let categories = await Category.find();
+
+	return response.render('admin/product/edit', {
+		title: 'Update',
+		product,
+		categories
 	});
 }
 // export function postEdit(request, response){
