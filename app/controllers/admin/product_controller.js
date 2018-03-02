@@ -7,12 +7,7 @@ export function index(request, response){
 			title: 'Product',
 			products: products,
 		});
-	});
-	// Product.find().populate('products')
-	// .populate('categories').exec((err, products) => {
-	// 	// console.log(products);
-	// 	response.send(products);
-	// });
+	});	
 }
 export function create(request, response){
 	Category.find({}, (err, category) => {
@@ -26,7 +21,7 @@ export function create(request, response){
 export function postCreate(request, response){
 	const newProduct = new Product({
 		name: request.body.name,
-		categoryId: request.body.category,
+		category_id: request.body.category,
 		image: request.body.imageUrl,
 		alias: request.body.alias,
 		numb_sort: request.body.numb_sort,		
@@ -35,21 +30,35 @@ export function postCreate(request, response){
 		response.redirect('/admin/product');
 	});
 }
-export function edit(request, response){
-	var product_id = request.params.id;
-	Product.findOne({_id: product_id}).populate('categoryId').exec((err, result) => {
-		if(err) console.log(err + '');
-		
-		response.render('admin/product/edit', {
-			data: result,
-			title: "Update"
-		});
-		// console.log(result.categoryId.name);
-	});
-}
-// export function postEdit(request, response){
-// 	response.send('method post edit product');
+// export function edit(request, response){
+// 	var product_id = request.params.id;
+// 	Product.findOne({_id: product_id}).populate('categoryId').exec((err, result) => {
+// 		if(err) console.log(err + '');		
+// 		response.render('admin/product/edit', {
+// 			data: result,
+// 			title: "Update"
+// 		});
+// 		// console.log(result.categoryId.name);
+// 	}
 // }
-export function deleteProduct(request, response){
-	response.send('method delete');
+/**
+ * edit product action
+ * @param  {object} request
+ * @param  {object} response
+ */
+export async function edit(request, response){
+	let productId = request.params.id;
+
+	let product = await Product
+		.findById(productId)
+		.populate({ path: 'category_id', select: 'name' });
+
+	let categories = await Category.find();
+
+	return response.render('admin/product/edit', {
+		title: 'Update',
+		product,
+		categories
+
+	});
 }

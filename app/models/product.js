@@ -15,8 +15,7 @@ let schema = {
 	image: {
 		type: String
 	},
-	// categoryId: Schema.ObjectId,
-	categoryId: {
+	category_id: {
 		type: Schema.Types.ObjectId, ref: 'category' ,
 	},
 	numb_sort: {
