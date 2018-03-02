@@ -16,6 +16,16 @@ let schema = {
 		type: String
 	},
 	categoryId: Schema.ObjectId,
+	stt: {
+		type: Number
+	},
+	status: {
+        type:[{
+            type:String,
+            enum: ['available', 'unavailable']
+        }],
+        default: ['available']
+    },
 	created_at: {
 		type: Date,
 		default: Date.now

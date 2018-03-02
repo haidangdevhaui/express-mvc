@@ -1,11 +1,6 @@
 import Category from '../../models/category'
 // var Category = require('../../models/category').default;
 var mongoose = require('mongoose');
-// export function index(request, response){
-// 	var data = Category.find();
-	
-// 	response.render('admin/category/index',{title: 'List category', data:data});
-
 /**
  * category index action - async/await style
  * @param  {object} request
@@ -45,11 +40,9 @@ export function postCreate(request, response) {
     const newCategory = new Category({
         name: request.body.name,
     });
-    newCategory.save((err, result)=> {
-    	// request.flash('info', 'Flash Message Added');
+    newCategory.save((err, result)=> {    	
     	response.redirect('/admin/category');
     });   
-   
     // Category.create(request.body.name);
 }
 export function edit(request, response) {
@@ -81,19 +74,6 @@ export function postEdit(request, response){
         multi: true
     }
     Category.findOneAndUpdate(conditions, {$set: newValues}, options, (err, category) => {
-        // if(err){
-        //     res.json({
-        //         result: "fail",
-        //         data: {},
-        //         message: "update category faild"
-        //     });
-        // }else{
-        //     res.json({
-        //         result: "ok",
-        //         data: category,
-        //         message: "update category successfully"
-        //     });
-        // }
         response.redirect("back");
     });
 }

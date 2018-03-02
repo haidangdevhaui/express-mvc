@@ -1,7 +1,6 @@
  <!-- Page-Title -->
 <div class="row">
-    <div class="col-sm-12">
-        
+    <div class="col-sm-12">        
         <h4 class="page-title" style="text-align: center;">Thêm mới giao diện</h4>
     </div>
 </div>
@@ -9,10 +8,10 @@
     <div class="col-lg-3"></div>
     <div class="col-lg-6">
         <div class="card-box">
-            <form action="#" method="" data-parsley-validate novalidate>
+            <form action="/admin/product/create" method="post" data-parsley-validate novalidate>
                 <div class="form-group">
                     <label for="userName">Ảnh</label>
-                    <input type="file" name="" value="" placeholder="">
+                    <input type="file" name="imageUrl" value="" placeholder="">
                 </div>
                 <div class="form-group">
                     <label for="userName">Tên*</label>
@@ -25,13 +24,13 @@
                 </div>
                 <div class="form-group">
                     <label for="">Chọn dự án</label>                   
-                    <select class="selectpicker" data-show-subtext="true" class="form-control" data-live-search="true">  <option>--Chọn dự án--</option>
-                        <option data-subtext="Rep California">Tom Foolery</option>
-                        <option data-subtext="Sen California">Bill Gordon</option>
-                        <option data-subtext="Sen Massacusetts">Elizabeth Warren</option>
-                        <option data-subtext="Rep Alabama">Mario Flores</option>
-                        <option data-subtext="Rep Alaska">Don Young</option>
-                        <option data-subtext="Rep California" disabled="disabled">Marvin Martinez</option>
+                    <select class="selectpicker" data-show-subtext="true" name="category" class="form-control" data-live-search="true">  
+                        <option>--Chọn dự án--</option>
+                        <% for(var i = 0; i < categories.length; i++){ %>
+                            <option data-subtext="" value="<%= categories[i]._id %>"><%= categories[i].name %></option>
+                        <% } %>
+                       
+                        
                     </select>
                 </div>     
                 <div class="form-group">

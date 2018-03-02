@@ -38,8 +38,12 @@
                             <td><%= data[i].created_at %></td>
                             <td>
                                 <div class="btn-group btn-group-sm">
-                                    <a class="btn btn-warning" href="/admin/category/edit/<%= data[i]._id %>">edit</a>
-                                    <a class="btn btn-danger" href="/admin/category/delete/<%= data[i]._id %>">delete</a>
+                                    <a class="btn btn-warning" style="margin-right: 5px;" href="/admin/category/edit/<%= data[i]._id %>">
+                                        <i class="fa fa-edit"> Edit</i>
+                                    </a>
+                                    <a class="btn btn-danger" href="/admin/category/delete/<%= data[i]._id %>">
+                                        <i class="fa fa-trash-o"> Delete</i>
+                                    </a>
                                 </div>
                             </td>
                         </tr>
