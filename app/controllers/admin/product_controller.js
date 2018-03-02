@@ -39,6 +39,7 @@ export function edit(request, response){
 	var product_id = request.params.id;
 	Product.findOne({_id: product_id}).populate('categoryId').exec((err, result) => {
 		if(err) console.log(err + '');
+		
 		response.render('admin/product/edit', {
 			data: result,
 			title: "Update"
