@@ -29,25 +29,26 @@
                         <th>Action</th>
                         
                     </tr>
-                </thead>
-
+                </thead>               
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Tiger Nixon</td>
-                        <td>Dự án</td>
-                        <td><img src="" alt=""></td>
-                        <td>Status</td>
-                        <td>28/2/2018</td>
-                        <td>
-                            <a href="product/edit/1" style="margin-right: 5px;" class="btn btn-warning">
-                                <i class="fa fa-edit"> Edit</i>
-                            </a>
-                            <a href="product/delete/" class="btn btn-danger">
-                                <i class="fa fa-trash-o"> Delete</i>
-                            </a>
-                        </td>                        
-                    </tr>                    
+                    <% for(var i = 0; i < products.length; i ++){ %>
+                        <tr>
+                                <td><%= i + 1 %></td>
+                                <td><%= products[i].name %></td>
+                                <td>danh mucj</td>
+                                <td><img src="" alt=""></td>
+                                <td><%= products[i].status %></td>
+                                <td><%= products[i].created_at %></td>
+                                <td>
+                                    <a href="product/edit/<%= products[i]._id %>" style="margin-right: 5px;" class="btn btn-warning">
+                                        <i class="fa fa-edit"> Edit</i>
+                                    </a>
+                                    <a href="product/delete/<%= products[i]._id %>" class="btn btn-danger">
+                                        <i class="fa fa-trash-o"> Delete</i>
+                                    </a>
+                                </td>                        
+                            </tr>      
+                    <% }  %>
                 </tbody>
             </table>
         </div>

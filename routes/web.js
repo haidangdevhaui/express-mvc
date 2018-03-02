@@ -36,6 +36,9 @@ export default function(route) {
 	// route product
 	route.get('/admin/product', product_controller.index);
 	route.get('/admin/product/create', product_controller.create);
+	route.post('/admin/product/create', product_controller.postCreate);
 	route.get('/admin/product/edit/:id', product_controller.edit);
+	// route.post('/admin/product/edit', product_controller.postEdit);
+	route.get('/admin/product/delete/:id', product_controller.deleteProduct)
 
 }

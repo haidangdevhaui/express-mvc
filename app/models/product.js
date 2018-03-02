@@ -15,8 +15,11 @@ let schema = {
 	image: {
 		type: String
 	},
-	categoryId: Schema.ObjectId,
-	stt: {
+	// categoryId: Schema.ObjectId,
+	categoryId: {
+		type: Schema.Types.ObjectId, ref: 'category' ,
+	},
+	numb_sort: {
 		type: Number
 	},
 	status: {
@@ -47,4 +50,4 @@ let methods = {
 
 }
 
-export default model('category', schema, methods, statics)
+export default model('product', schema, methods, statics)
