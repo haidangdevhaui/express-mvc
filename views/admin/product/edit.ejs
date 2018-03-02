@@ -31,10 +31,8 @@
                 <div class="form-group">
                     <label for="">Chọn dự án</label>
                     <select name="category_project" class="form-control">
-                        <option value=""><%= data.categoryId.name %></option>
-                        <% for(var i = 0; i < data.length; i++) { %>
-                            <option value=""><%= data[i].name %></option>
-                        <% } %>
+                        <option value="<%= data.categoryId._id%>"><%= data.categoryId.name %></option>
+                        
                         
                         
                        
