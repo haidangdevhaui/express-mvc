@@ -1,13 +1,30 @@
 import Category from '../../models/category'
 import Product from '../../models/product'
-export function index(request, response){
-	Product.find().sort({ _id: -1 }).exec((err, products) => {
+// export function index(request, response){
+// 	Product.find().sort({ _id: -1 }).exec((err, products) => {
 		
-		response.render('admin/product/index', {
-			title: 'Product',
-			products: products,
-		});
-	});	
+// 		response.render('admin/product/index', {
+// 			title: 'Product',
+// 			products: products,
+// 		});
+// 	});	
+// }
+/**
+ * get list product action
+ * @param  {object} request
+ * @param  {object} response
+ */
+export async function index(request, response){
+	let products = await Product.find().sort({_id: -1});
+	for(var i= 0; i < products.length; i++){
+		console.log(products[i].category_id);
+	}
+	let categories = await Category.find();
+	response.render('admin/product/index', {
+		title: 'List product',
+		products: products,
+		categories: categories
+	})
 }
 export function create(request, response){
 	Category.find({}, (err, category) => {
@@ -48,13 +65,10 @@ export function postCreate(request, response){
  */
 export async function edit(request, response){
 	let productId = request.params.id;
-
 	let product = await Product
 		.findById(productId)
 		.populate({ path: 'category_id', select: 'name' });
-
 	let categories = await Category.find();
-
 	return response.render('admin/product/edit', {
 		title: 'Update',
 		product,
