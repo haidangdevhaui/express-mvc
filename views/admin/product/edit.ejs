@@ -14,10 +14,16 @@
         <div class="card-box">
            
 
-            <form action="#" method="" data-parsley-validate novalidate>
+            <form action="/admin/product/edit" method="post" data-parsley-validate novalidate>
+                <div class="form-group">
+                    <label for="userName">Dự án</label>
+                    <input type="text" name="name" parsley-trigger="change" required
+                     class="form-control" disabled value="<%= category.name %>" id="">
+                </div>
+                <input type="hidden" value="<%= product._id %>" name="product_id">
                 <div class="form-group">
                     <label for="">Ảnh</label>
-                    <input type="file" name="" value="" placeholder="">
+                    <input type="file" name="image" value="" placeholder="">
                 </div>
                 <div class="form-group">
                     <label for="userName">Tên*</label>
@@ -26,29 +32,18 @@
                 </div>
                 <div class="form-group">
                     <label for="">Đường dẫn</label>
-                    <input type="text" name="alias" value="" class="form-control" placeholder="">
-                </div>
+                    <input type="text" name="alias" value="<%= product.alias %>" class="form-control" placeholder="">
+                </div>                
                 
                 <div class="form-group">
-                    <label for="">Chọn dự án</label>
-                    <select name="category_project" class="form-control">
-                        <option value="">---Chon danh muc---</option>
-                        <% for (var i = 0; i < categories.length; i++) { %>
-                           <option value="<%= categories[i]._id %>" <%= product.category_id._id.equals(categories[i]._id) ? 'selected' : '' %>><%= categories[i].name %></option> 
-                        <% } %>
-                    </select>
-                </div>
-                <div class="form-group">
                     <label for="">Số thứ tự</label>
-                    <input type="number" name="stt" placeholder="" class="form-control" style="width: 100px" value="" id="">
+                    <input type="number" name="numb_sort" placeholder="" class="form-control" style="width: 100px" value="<%= product.numb_sort %>" id="">
                 </div>
                 <div class="form-group text-right m-b-0">
                     <button class="btn btn-primary waves-effect waves-light" type="submit">
                         Cập nhật
                     </button>
-                    <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
-                        Hủy
-                    </button>
+                    <a href="/admin/category/edit/<%= category._id%>" class="btn btn-default waves-effect waves-light m-l-5">Quay lại</a>                    
                 </div>
 
             </form>

@@ -1,4 +1,5 @@
 import Category from '../../models/category'
+import Product from '../../models/product'
 // var Category = require('../../models/category').default;
 var mongoose = require('mongoose');
 /**
@@ -38,21 +39,31 @@ export function create(request, response) {
 }
 export function postCreate(request, response) {
     const newCategory = new Category({
-        name: request.body.name,
+		name: request.body.name		
     });
     newCategory.save((err, result)=> {    	
     	response.redirect('/admin/category');
     });   
     // Category.create(request.body.name);
 }
-export function edit(request, response) {
+// export function edit(request, response) {
+// 	var cateId = mongoose.Types.ObjectId(request.params.id);
+// 	Category.findById(cateId, (err, result) => {
+// 		response.render('admin/category/edit',{
+// 			title: 'Update',
+// 			data: result
+// 		});
+// 	});  
+// }
+export async function edit(request, response){
 	var cateId = mongoose.Types.ObjectId(request.params.id);
-	Category.findById(cateId, (err, result) => {
-		response.render('admin/category/edit',{
-			title: 'Update',
-			data: result
-		});
-	});    
+	var category = await Category.findById(cateId);
+	let products = await Product.find({category_id: category._id});
+	return response.render('admin/category/edit', {
+		title: 'List Category',
+		data: category,
+		products: products
+	})
 }
 export function postEdit(request, response){
 	let conditions = {};
@@ -68,7 +79,7 @@ export function postEdit(request, response){
 	let newValues = {};
 	if(request.body.name && request.body.name.length > 1){
         newValues.name = request.body.name;
-    }
+	}
     const options = {
         new: true,
         multi: true

@@ -1,14 +1,20 @@
  <!-- Page-Title -->
 <div class="row">
     <div class="col-sm-12">        
-        <h4 class="page-title" style="text-align: center;">Thêm mới giao diện</h4>
+        <h4 class="page-title" style="text-align: center;">Thêm mới giao diện dự án <%= category.name %></h4>
     </div>
 </div>
 <div class="row">
     <div class="col-lg-3"></div>
     <div class="col-lg-6">
         <div class="card-box">
-            <form action="/admin/product/create" method="post" data-parsley-validate novalidate>
+            <form action="/admin/product/create" method="post" enctype="multipart/form-data" data-parsley-validate novalidate>
+                <div class="form-group">
+                    <label for="userName">Dự án</label>
+                    <input type="hidden" value="<%= category._id %>" name="cate_id">
+                    <input type="text" name="name" parsley-trigger="change" required
+                        class="form-control" value="<%= category.name %>" disabled id="">
+                </div>
                 <div class="form-group">
                     <label for="userName">Ảnh</label>
                     <input type="file" name="imageUrl" value="" placeholder="">
@@ -18,21 +24,12 @@
                     <input type="text" name="name" parsley-trigger="change" required
                            placeholder="Nhập tên" class="form-control" value="" id="">
                 </div>
+                
                 <div class="form-group">
                     <label for="userName">Đường dẫn</label>
                     <input type="text" name="alias" value="" class="form-control" placeholder="">
                 </div>
-                <div class="form-group">
-                    <label for="">Chọn dự án</label>                   
-                    <select class="selectpicker" data-show-subtext="true" name="category" class="form-control" data-live-search="true">  
-                        <option>--Chọn dự án--</option>
-                        <% for(var i = 0; i < categories.length; i++){ %>
-                            <option data-subtext="" value="<%= categories[i]._id %>"><%= categories[i].name %></option>
-                        <% } %>
-                       
-                        
-                    </select>
-                </div>     
+                    
                 <div class="form-group">
                     <label for="userName">Số thứ tự</label>
                     <input type="number" name="numb_sort" placeholder="" class="form-control" style="width: 100px" value="" id="">
@@ -41,9 +38,7 @@
                     <button class="btn btn-primary waves-effect waves-light" type="submit">
                         Thêm
                     </button>
-                    <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
-                        Hủy
-                    </button>
+                    <a href="/admin/category/edit/<%= category._id%>" class="btn btn-default waves-effect waves-light m-l-5">Quay lại</a>
                 </div>
 
             </form>

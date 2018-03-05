@@ -2,7 +2,7 @@
     <div class="col-sm-12">
         <div class="card-box table-responsive">
             <div class="dropdown pull-right">
-                <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
+                <!-- <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
                     <i class="zmdi zmdi-more-vert"></i>
                 </a>
                 <ul class="dropdown-menu" role="menu">
@@ -11,7 +11,7 @@
                     <li><a href="#">Something else here</a></li>
                     <li class="divider"></li>
                     <li><a href="#">Separated link</a></li>
-                </ul>
+                </ul> -->
             </div>
 
             <h4 class="header-title m-t-0 m-b-30">
@@ -25,6 +25,7 @@
                     <tr>
                         <th>STT</th>
                         <th>Name</th>
+                        <th>Link</th>
                         <th>Created_at</th>
                         <th>Action</th>
                         
@@ -35,6 +36,7 @@
                         <tr>
                             <td><%= i + 1 %></td>
                             <td><%= data[i].name %></td>
+                            <td><a href="/project/<%= data[i]._id %>">/project/<%= data[i]._id %></a></td>
                             <td><%= data[i].created_at %></td>
                             <td>
                                 <div class="btn-group btn-group-sm">

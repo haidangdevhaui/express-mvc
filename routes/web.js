@@ -35,10 +35,13 @@ export default function(route) {
 	route.get('/admin/category/delete/:id', category_controller.deleteCategory);
 	// route product
 	route.get('/admin/product', product_controller.index);
-	route.get('/admin/product/create', product_controller.create);
+	route.get('/admin/product/create/:cateid', product_controller.create);
 	route.post('/admin/product/create', product_controller.postCreate);
 	route.get('/admin/product/edit/:id', product_controller.edit);
-	// route.post('/admin/product/edit', product_controller.postEdit);
-	// route.get('/admin/product/delete/:id', product_controller.deleteProduct)
+	route.post('/admin/product/edit', product_controller.postEdit);
+	route.get('/admin/product/delete/:id', product_controller.deleteProduct)
 
+	// router frontend
+	route.get('/project/:id', home_controller.index);
+	route.get('/detail/:id', home_controller.detail);
 }

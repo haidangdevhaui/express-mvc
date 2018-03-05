@@ -1,7 +1,7 @@
  <!-- Page-Title -->
 <div class="row">
     <div class="col-sm-12">        
-        <h4 class="page-title" style="text-align: center;">Edit a project</h4>
+        <h4 class="page-title" style="text-align: center;">Edit project: "<%= data.name %>"</h4>
     </div>
 </div>
 <div class="row">
@@ -14,18 +14,60 @@
                     <input type="hidden" name="cateId" value="<%= data._id %>" placeholder="">
                     <input type="text" name="name" parsley-trigger="change" required
                            placeholder="Enter project name" class="form-control" value="<%= data.name %>" id="">
-                </div>               
+                </div>  
+                            
                 <div class="form-group text-right m-b-0">
                     <button class="btn btn-primary waves-effect waves-light" type="submit">
                         Cập nhật
                     </button>
-                    <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
-                        Hủy
-                    </button>
+                    <a href="/admin/category/" class="btn btn-default waves-effect waves-light m-l-5">Quay lại</a>
                 </div>
             </form>
         </div>
     </div><!-- end col -->
-	<div class="col-lg-3"></div>    
+	<div class="col-lg-3"></div>
 </div>
 <!-- end row -->
+<div class="row">
+    <h4 class="header-title m-t-0 m-b-30">
+        <span style="margin-right: 20px">List giao diện</span>
+        <!-- <button type="button" onclick="javascript:window.location='/create'" class="btn btn-primary waves-effect w-md waves-light m-b-5">Create</button> -->
+        <a href="/admin/product/create/<%= data._id %>" class="btn btn-primary waves-effect w-md waves-light m-b-5">Create</a>
+    </h4>
+
+    <table id="datatable" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Name</th>
+                <th>Alias</th>
+                <th>Image</th>
+                <th>Created_at</th>
+                <th>Action</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+                <% for(var i = 0; i< products.length; i++){ %>
+                    <tr>
+                        <td><%= products[i].numb_sort %></td>
+                        <td><%= products[i].name %></td>
+                        <td><%= products[i].alias %></td>
+                        <td>image</td>
+                        <td><%= products[i].created_at %></td>
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                                <a class="btn btn-warning" style="margin-right: 5px;" href="/admin/product/edit/<%= products[i]._id %>">
+                                    <i class="fa fa-edit"> Edit</i>
+                                </a>
+                                <a class="btn btn-danger" href="/admin/product/delete/<%= products[i]._id %>">
+                                    <i class="fa fa-trash-o"> Delete</i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                <% } %>                         
+
+        </tbody>
+    </table>
+</div>
