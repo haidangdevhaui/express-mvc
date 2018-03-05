@@ -40,7 +40,6 @@
             <tr>
                 <th>STT</th>
                 <th>Name</th>
-                <th>Alias</th>
                 <th>Image</th>
                 <th>Created_at</th>
                 <th>Action</th>
@@ -52,8 +51,7 @@
                     <tr>
                         <td><%= products[i].numb_sort %></td>
                         <td><%= products[i].name %></td>
-                        <td><%= products[i].alias %></td>
-                        <td>image</td>
+                        <td><img src="/public/uploads/<%= products[i].image %>" alt=""></td>
                         <td><%= products[i].created_at %></td>
                         <td>
                             <div class="btn-group btn-group-sm">

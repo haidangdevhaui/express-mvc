@@ -42,11 +42,12 @@ export function postCreate(request, response){
 	const newProduct = new Product({
 		name: request.body.name,
 		category_id: request.body.cate_id,
-		image: request.body.imageUrl,
+		image: request.file.filename,
 		alias: request.body.alias,
 		numb_sort: request.body.numb_sort,		
 	});
 	newProduct.save((err, result) => {
+		if(err) console.log(err + '');
 		response.redirect('/admin/category/edit/' + cate_id);
 	});
 }

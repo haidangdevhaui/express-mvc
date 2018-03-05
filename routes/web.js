@@ -5,6 +5,19 @@ import * as category_controller from '../app/controllers/admin/category_controll
 import * as product_controller from '../app/controllers/admin/product_controller'
 import time_logging from '../app/middlewares/time_logging'
 import admin_authentication from '../app/middlewares/admin_authentication'
+var multer = require('multer');
+var storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, 'public/uploads')
+    },
+    filename: function(req, file, cb) {
+        cb(null, Date.now() + file.originalname);
+    }
+});
+
+var upload = multer({
+    storage: storage
+});
 
 export default function(route) {
 	// defined routes
@@ -36,10 +49,15 @@ export default function(route) {
 	// route product
 	route.get('/admin/product', product_controller.index);
 	route.get('/admin/product/create/:cateid', product_controller.create);
-	route.post('/admin/product/create', product_controller.postCreate);
+	route.post('/admin/product/create',upload.single('imageUrl'), product_controller.postCreate);
 	route.get('/admin/product/edit/:id', product_controller.edit);
 	route.post('/admin/product/edit', product_controller.postEdit);
 	route.get('/admin/product/delete/:id', product_controller.deleteProduct)
+
+	//upload image
+	route.post('/upload',upload.single('imageUrl'), (req, res) => {
+		console.log(req.file);
+	})
 
 	// router frontend
 	route.get('/project/:id', home_controller.index);

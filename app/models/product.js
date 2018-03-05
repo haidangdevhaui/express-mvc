@@ -9,9 +9,6 @@ let schema = {
 		type: String,
 		require: true
 	},
-	alias: {
-		type: String,
-	},
 	image: {
 		type: String
 	},
