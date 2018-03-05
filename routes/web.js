@@ -51,7 +51,7 @@ export default function(route) {
 	route.get('/admin/product/create/:cateid', product_controller.create);
 	route.post('/admin/product/create',upload.single('imageUrl'), product_controller.postCreate);
 	route.get('/admin/product/edit/:id', product_controller.edit);
-	route.post('/admin/product/edit', product_controller.postEdit);
+	route.post('/admin/product/edit', upload.single('imageUrl'), product_controller.postEdit);
 	route.get('/admin/product/delete/:id', product_controller.deleteProduct)
 
 	//upload image

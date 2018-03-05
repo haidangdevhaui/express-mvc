@@ -31,7 +31,7 @@
 <div class="row">
     <h4 class="header-title m-t-0 m-b-30">
         <span style="margin-right: 20px">List giao diện</span>
-        <!-- <button type="button" onclick="javascript:window.location='/create'" class="btn btn-primary waves-effect w-md waves-light m-b-5">Create</button> -->
+        
         <a href="/admin/product/create/<%= data._id %>" class="btn btn-primary waves-effect w-md waves-light m-b-5">Create</a>
     </h4>
 
@@ -51,7 +51,7 @@
                     <tr>
                         <td><%= products[i].numb_sort %></td>
                         <td><%= products[i].name %></td>
-                        <td><img src="/public/uploads/<%= products[i].image %>" alt=""></td>
+                        <td><img src="<%= products[i].image %>" alt="" style="width: 150px; height:100px;"></td>
                         <td><%= products[i].created_at %></td>
                         <td>
                             <div class="btn-group btn-group-sm">

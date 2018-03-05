@@ -42,10 +42,11 @@ export function postCreate(request, response){
 	const newProduct = new Product({
 		name: request.body.name,
 		category_id: request.body.cate_id,
-		image: request.file.filename,
+		image: request.file.path.replace('public', ''),
 		alias: request.body.alias,
 		numb_sort: request.body.numb_sort,		
 	});
+	// console.log(request.file);
 	newProduct.save((err, result) => {
 		if(err) console.log(err + '');
 		response.redirect('/admin/category/edit/' + cate_id);
@@ -98,7 +99,7 @@ export function postEdit(request, response){
 	if(request.body.name && request.body.name.length > 1){
         newValues.name = request.body.name;
 	}
-	newValues.image = request.body.image;
+	newValues.image = request.file.path.replace('public', ''),
 	newValues.numb_sort = request.body.numb_sort;
 	newValues.alias = request.body.alias;
 	const options = {
