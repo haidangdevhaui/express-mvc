@@ -7,9 +7,14 @@ import expressLayouts from 'express-ejs-layouts'
 
 import routes from '../routes/web'
 import core_helpers from './core_helpers'
-var flash = require('express-flash-messages');
+var flash = require('connect-flash');
+var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
-var multer  = require('multer')
+var multer  = require('multer');
+var session = require('express-session');
+var passport = require('passport');
+var bcrypt = require('bcrypt');
+
 // using .env file mapping to process.env
 dotenv.config()
 
@@ -26,12 +31,19 @@ mongoose.connect(config('database.mongo')).then(
 	}
 );
 
-let app = express()
 
+
+let app = express()
+var sessionStore = new session.MemoryStore;
 // using body parser for form data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+	secret: 'secret123',
+	saveUninitialized: true,
+	resave: true
+}));
 app.use(flash());
 // static files in public
 app.use('/', express.static('public'))

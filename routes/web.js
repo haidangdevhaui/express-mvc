@@ -38,6 +38,13 @@ export default function(route) {
 		route.set('layout', 'admin/layout');
 		return next();
 	});
+	// route register
+	route.get('/register', admin_controller.register);
+	route.post('/register', admin_controller.postRegister);
+
+	//route login
+	route.get('/login', admin_controller.login);
+
 	// route category
 	route.get('/admin', admin_controller.index);
 	route.get('/admin/category', category_controller.index);
@@ -53,11 +60,6 @@ export default function(route) {
 	route.get('/admin/product/edit/:id', product_controller.edit);
 	route.post('/admin/product/edit', upload.single('imageUrl'), product_controller.postEdit);
 	route.get('/admin/product/delete/:id', product_controller.deleteProduct)
-
-	//upload image
-	route.post('/upload',upload.single('imageUrl'), (req, res) => {
-		console.log(req.file);
-	})
 
 	// router frontend
 	route.get('/project/:id', home_controller.index);

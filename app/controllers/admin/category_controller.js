@@ -28,9 +28,11 @@ export function index(request, response) {
 		status: 1,
 		_id: 1
 	}).exec((err, category) => {
+		
 		response.render('admin/category/index',{
 			title: 'List category',
-			data: category
+			data: category,
+			message: request.flash('message', 'af sfsaf')			
 		});
 	});	
 }
@@ -41,7 +43,7 @@ export function postCreate(request, response) {
     const newCategory = new Category({
 		name: request.body.name		
     });
-    newCategory.save((err, result)=> {    	
+    newCategory.save((err, result)=> {
     	response.redirect('/admin/category');
     });   
     // Category.create(request.body.name);
