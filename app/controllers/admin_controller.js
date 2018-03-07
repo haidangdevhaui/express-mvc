@@ -9,7 +9,9 @@ export function register(request, response){
 export async function postRegister(request, response){
 	var user = await User.findOne({email: request.body.email});
 	if(user){
+		console.log('Email da ton tai');
 		return response.redirect('/register');
+		
 	}
 	var newUser = new User({
 		username: request.body.username,
@@ -21,6 +23,7 @@ export async function postRegister(request, response){
 			console.log(err + '');
 		}
 		response.redirect('/login');
+		// console.log('register successful');
 	});
 }
 

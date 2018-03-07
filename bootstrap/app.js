@@ -35,15 +35,19 @@ mongoose.connect(config('database.mongo')).then(
 
 let app = express()
 var sessionStore = new session.MemoryStore;
+require('../config/passport')(passport);
 // using body parser for form data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(session({
-	secret: 'secret123',
-	saveUninitialized: true,
-	resave: true
+    secret:'secret123',
+    saveUninitialized: true,
+    resave:true
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(flash());
 // static files in public
 app.use('/', express.static('public'))
@@ -57,6 +61,6 @@ app.use(expressLayouts)
 
 
 // booting routes
-routes(app)
+routes(app, passport)
 
 export default app

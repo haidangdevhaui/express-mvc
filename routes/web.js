@@ -5,6 +5,7 @@ import * as category_controller from '../app/controllers/admin/category_controll
 import * as product_controller from '../app/controllers/admin/product_controller'
 import time_logging from '../app/middlewares/time_logging'
 import admin_authentication from '../app/middlewares/admin_authentication'
+
 var multer = require('multer');
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -19,7 +20,7 @@ var upload = multer({
     storage: storage
 });
 
-export default function(route) {
+export default function(route, passport) {
 	// defined routes
 	route.get('/', time_logging, home_controller.index)
 
@@ -44,7 +45,11 @@ export default function(route) {
 
 	//route login
 	route.get('/login', admin_controller.login);
-
+	route.post('/login', passport.authenticate('login',{
+		successRedirect : '/admin',
+        failureRedirect : '/login',
+		failureFlash : true,		
+	}));
 	// route category
 	route.get('/admin', admin_controller.index);
 	route.get('/admin/category', category_controller.index);
@@ -65,3 +70,9 @@ export default function(route) {
 	route.get('/project/:id', home_controller.index);
 	route.get('/detail/:id', home_controller.detail);
 }
+
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated())
+    return next();
+    res.redirect('/login');
+};
