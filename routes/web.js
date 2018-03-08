@@ -33,9 +33,9 @@ export default function(route, passport) {
 	// for not prefix
 
 	// route admin
-	route.use('/admin*', admin_authentication);
+	// route.use('/admin*', admin_authentication);
 
-	route.use('/admin*', admin_authentication, function(request, response, next) {
+	route.use('/admin*', isLoggedIn, function(request, response, next) {
 		route.set('layout', 'admin/layout');
 		return next();
 	});
@@ -51,7 +51,7 @@ export default function(route, passport) {
 		failureFlash : true,		
 	}));
 	// route category
-	route.get('/admin', admin_controller.index);
+	route.get('/admin', isLoggedIn, admin_controller.index);
 	route.get('/admin/category', category_controller.index);
 	route.get('/admin/category/create', category_controller.create);
 	route.post('/admin/category/create', category_controller.postCreate);
@@ -67,8 +67,8 @@ export default function(route, passport) {
 	route.get('/admin/product/delete/:id', product_controller.deleteProduct)
 
 	// router frontend
-	route.get('/project/:id', home_controller.index);
-	route.get('/detail/:id', home_controller.detail);
+	route.get('/project/:id', home_controller.project);
+	route.get('/detail/:cateid/:id', home_controller.detail);
 }
 
 function isLoggedIn(req, res, next){
