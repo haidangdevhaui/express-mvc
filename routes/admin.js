@@ -24,8 +24,11 @@ var upload = multer({
 
 const route = Router();
 
+// route.set('layout', 'admin/layout')
+route.use(admin_authentication)
+
 	// defined routes
-	route.get('/', time_logging, home_controller.index)
+	// route.get('/', time_logging, home_controller.index)
 
 	// router frontend
 	
@@ -39,10 +42,10 @@ const route = Router();
 
 	// route admin
 	// route.use('*', admin_authentication);
-	route.use(admin_authentication,   function(request, response, next) {
-		route.set('layout', 'admin/layout');
-		return next();
-	});
+	// route.use(admin_authentication,   function(request, response, next) {
+	// 	route.set('layout', 'admin/layout');
+	// 	return next();
+	// });
 	// route register
 	route.get('/register', admin_controller.register);
 	route.post('/register', admin_controller.postRegister);
@@ -74,6 +77,7 @@ const route = Router();
 
 
 function isLoggedIn(req, res, next){
+	return next()
     if(req.isAuthenticated())
     return next();
     res.redirect('/login');

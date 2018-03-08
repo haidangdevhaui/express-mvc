@@ -57,13 +57,19 @@ app.set('view engine', 'ejs')
 
 // set layouts
 // app.set('layout', true)
-app.set('layout', 'front/layout')
+
 app.use(expressLayouts)
 
 
 // booting routes
-app.use(front)
-app.use('/admin/', admin)
+app.use('/', function(request, response, next) {
+	app.set('layout', 'front/layout');
+	next();
+}, front)
+app.use('/admin', function(request, response, next) {
+	app.set('layout', 'admin/layout');
+	next();
+}, admin);
 
 
 export default app
