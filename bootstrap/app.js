@@ -5,7 +5,8 @@ import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
 import expressLayouts from 'express-ejs-layouts'
 
-import routes from '../routes/web'
+import admin from '../routes/admin'
+import front from '../routes/front'
 import core_helpers from './core_helpers'
 var flash = require('connect-flash');
 var morgan = require('morgan');
@@ -61,6 +62,8 @@ app.use(expressLayouts)
 
 
 // booting routes
-routes(app, passport)
+app.use(front)
+app.use('/admin/', admin)
+
 
 export default app

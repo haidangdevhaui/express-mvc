@@ -6,6 +6,8 @@ import * as product_controller from '../app/controllers/admin/product_controller
 import time_logging from '../app/middlewares/time_logging'
 import admin_authentication from '../app/middlewares/admin_authentication'
 
+var passport = require('passport');
+
 var multer = require('multer');
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -20,22 +22,24 @@ var upload = multer({
     storage: storage
 });
 
-export default function(route, passport) {
+const route = Router();
+
 	// defined routes
 	route.get('/', time_logging, home_controller.index)
 
+	// router frontend
+	
 
 	// for using prefix and middleware router
 	// const adminRoutes = Router();
-	// route.use('/admin', admin_authentication, adminRoutes)
+	// route.use('', admin_authentication, adminRoutes)
 	// adminRoutes.get('/', admin_controller.index)
 
 	// for not prefix
 
 	// route admin
-	// route.use('/admin*', admin_authentication);
-
-	route.use('/admin*', isLoggedIn, function(request, response, next) {
+	// route.use('*', admin_authentication);
+	route.use(admin_authentication,   function(request, response, next) {
 		route.set('layout', 'admin/layout');
 		return next();
 	});
@@ -46,33 +50,34 @@ export default function(route, passport) {
 	//route login
 	route.get('/login', admin_controller.login);
 	route.post('/login', passport.authenticate('login',{
-		successRedirect : '/admin',
+		successRedirect : '',
         failureRedirect : '/login',
-		failureFlash : true,		
+		failureFlash : true,
 	}));
 	// route category
-	route.get('/admin', isLoggedIn, admin_controller.index);
-	route.get('/admin/category', category_controller.index);
-	route.get('/admin/category/create', category_controller.create);
-	route.post('/admin/category/create', category_controller.postCreate);
-	route.get('/admin/category/edit/:id', category_controller.edit);
-	route.post('/admin/category/edit', category_controller.postEdit);
-	route.get('/admin/category/delete/:id', category_controller.deleteCategory);
+	route.get('', isLoggedIn, admin_controller.index);
+	route.get('/category', isLoggedIn, category_controller.index);
+	route.get('/category/create', isLoggedIn, category_controller.create);
+	route.post('/category/create', isLoggedIn, category_controller.postCreate);
+	route.get('/category/edit/:id', isLoggedIn, category_controller.edit);
+	route.post('/category/edit', isLoggedIn, category_controller.postEdit);
+	route.get('/category/delete/:id', isLoggedIn, category_controller.deleteCategory);
 	// route product
-	route.get('/admin/product', product_controller.index);
-	route.get('/admin/product/create/:cateid', product_controller.create);
-	route.post('/admin/product/create',upload.single('imageUrl'), product_controller.postCreate);
-	route.get('/admin/product/edit/:id', product_controller.edit);
-	route.post('/admin/product/edit', upload.single('imageUrl'), product_controller.postEdit);
-	route.get('/admin/product/delete/:id', product_controller.deleteProduct)
+	route.get('/product', isLoggedIn, product_controller.index);
+	route.get('/product/create/:cateid', isLoggedIn, product_controller.create);
+	route.post('/product/create',upload.single('imageUrl'), product_controller.postCreate);
+	route.get('/product/edit/:id', isLoggedIn, product_controller.edit);
+	route.post('/product/edit', upload.single('imageUrl'), product_controller.postEdit);
+	route.get('/product/delete/:id', isLoggedIn, product_controller.deleteProduct)
 
-	// router frontend
-	route.get('/project/:id', home_controller.project);
-	route.get('/detail/:cateid/:id', home_controller.detail);
-}
+	
+
 
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated())
     return next();
     res.redirect('/login');
 };
+
+
+export default route

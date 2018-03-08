@@ -1,5 +1,7 @@
+var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var User = require('../app/models/user');
+// var User = require('../app/models/user');
+import User from '../app/models/user'
 module.exports = function(passport){
     passport.serializeUser(function(user, done) {
         done(null, user.id);
@@ -22,9 +24,9 @@ module.exports = function(passport){
                 if (!user) {
                     return done(null, false, req.flash('loginMessage','Incorrect username.' ));
                 }
-                if (!user.validPassword(password)) {
-                    return done(null, false,  req.flash('loginMessage','Incorrect password !' ));
-                }
+                // if (!user.validPassword(password)) {
+                //     return done(null, false,  req.flash('loginMessage','Incorrect password !' ));
+                // }
                 return done(null, user);
             });
         }
