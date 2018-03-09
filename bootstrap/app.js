@@ -23,7 +23,7 @@ core_helpers()
 
 // connect database
 
-mongoose.connect(config('database.mongodb.mongoURI')).then(
+mongoose.connect(config('database.mongo')).then(
 	() => {
 		console.log('Connect DB successfully');
 	},
