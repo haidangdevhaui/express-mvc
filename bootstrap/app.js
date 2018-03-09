@@ -22,14 +22,21 @@ dotenv.config()
 core_helpers()
 
 // connect database
-mongoose.connect(config('database.mongo')).then(
-	() => {
-		console.log('Connect DB successfully');
-	},
-	(err) => {
-		console.log('Connect DB failed')
-	}
-);
+// mongoose.connect(config('database.mongo')).then(
+// 	() => {
+// 		console.log('Connect DB successfully');
+// 	},
+// 	(err) => {
+// 		console.log('Connect DB failed')
+// 	}
+// );
+mongoose.connect('mongodb://hoangchuong>:hoangchuong94@ds263138.mlab.com:63138/dbtest').then(() => {
+    console.log('Connect DB successfully');
+  },
+  err => {
+    console.log('Connect DB fail');
+  }
+ );
 
 
 
