@@ -23,7 +23,7 @@ core_helpers()
 
 // connect database
 
-mongoose.connect('mongodb://hoangchuong:hoangchuong94@ds263138.mlab.com:63138/dbtest').then(() => {
+mongoose.connect('mongodb://hoangchuong:hoangchuong94@ds059155.mlab.com:59155/firstapp').then(() => {
     console.log('Connect DB successfully');
   },
   err => {
