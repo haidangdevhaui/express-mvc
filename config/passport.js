@@ -29,8 +29,6 @@ module.exports = function(passport){
                     return done(null, 'failed');
                 }                
                 return done(null, user);                
-            }).catch((err) => {
-                return done(err);
             });
         }
     )); 
