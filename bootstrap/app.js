@@ -32,7 +32,6 @@ mongoose.connect('mongodb://hoangchuong:hoangchuong94@ds263138.mlab.com:63138/db
  );
 
 
-
 let app = express()
 var sessionStore = new session.MemoryStore;
 require('../config/passport')(passport);
