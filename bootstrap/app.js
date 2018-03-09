@@ -23,13 +23,14 @@ core_helpers()
 
 // connect database
 
-mongoose.connect('mongodb://hoangchuong:hoangchuong94@ds059155.mlab.com:59155/firstapp').then(() => {
-    console.log('Connect DB successfully');
-  },
-  err => {
-    console.log('Connect DB fail');
-  }
- );
+mongoose.connect(config('database.mongodb.mongoURI')).then(
+	() => {
+		console.log('Connect DB successfully');
+	},
+	(err) => {
+		console.log('Connect DB failed')
+	}
+);
 
 
 let app = express()
