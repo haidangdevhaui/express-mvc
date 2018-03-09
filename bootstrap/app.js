@@ -22,15 +22,14 @@ dotenv.config()
 core_helpers()
 
 // connect database
-// mongoose.connect(config('database.mongo')).then(
-// 	() => {
-// 		console.log('Connect DB successfully');
-// 	},
-// 	(err) => {
-// 		console.log('Connect DB failed')
-// 	}
-// );
-mongoose.connect(process.env.MONGODB_URI).then(() => console.log('Connect successfully'));
+mongoose.connect(config('database.mongo')).then(
+	() => {
+		console.log('Connect DB successfully');
+	},
+	(err) => {
+		console.log('Connect DB failed')
+	}
+);
 
 
 
