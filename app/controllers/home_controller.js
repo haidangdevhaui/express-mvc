@@ -13,7 +13,7 @@ import Category from '../models/category'
 // }
 export async function index(request, response) {
 	var a = 'sdfsdf';
-	return response.render('front/index', {
+	return response.render('admin/login', {
 		a: a,
 		title: 'Home'
 	});

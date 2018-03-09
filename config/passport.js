@@ -1,4 +1,6 @@
 var passport = require('passport');
+var bcrypt = require('bcrypt');
+var hash  = require('password-hash');
 var LocalStrategy = require('passport-local').Strategy;
 // var User = require('../app/models/user');
 import User from '../app/models/user'
@@ -18,18 +20,19 @@ module.exports = function(passport){
         passwordField: 'password',
         passReqToCallback:true
     },
-        function(req,email, password, done) {
-            User.findOne({ email: email }, function(err, user) {
-                if (err) { return done(err); }
-                if (!user) {
-                    return done(null, false, req.flash('loginMessage','Incorrect username.' ));
+        function(req,email, password, done) {            
+            User.findOne({email: email}).then((user) => {
+                if(!user){
+                    return done(null, false, 'email khong chinh xac');
                 }
-                // if (!user.validPassword(password)) {
-                //     return done(null, false,  req.flash('loginMessage','Incorrect password !' ));
-                // }
-                return done(null, user);
+                if (!hash.verify(password, user.password)) {
+                    return done(null, 'failed');
+                }                
+                return done(null, user);                
+            }).catch((err) => {
+                return done(err);
             });
         }
-    ));    
+    )); 
 
 };

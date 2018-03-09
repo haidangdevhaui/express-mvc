@@ -53,7 +53,7 @@
                         <td><%= products[i].numb_sort %></td>
                         <td><%= products[i].name %></td>
                         <td><img src="<%= products[i].image %>" alt="" style="width: 150px; height:100px;"></td>
-                        <td><a href="/detail/<%= products[i]._id %>" target="_blank">/detail/<%= products[i]._id %></a></td>
+                        <td><a href="/detail/<%= data._id %>/<%= products[i]._id %>" target="_blank">/detail/<%= products[i]._id %></a></td>
                         <td><%= products[i].created_at %></td>
                         <td>
                             <div class="btn-group btn-group-sm">
