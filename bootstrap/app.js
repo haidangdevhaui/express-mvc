@@ -16,24 +16,35 @@ var passport = require('passport');
 var bcrypt = require('bcrypt');
 
 // using .env file mapping to process.env
-dotenv.config()
-
+// dotenv.config()
 // init core helper functions
 core_helpers()
 
 // connect database
 
-mongoose.connect(config('database.mongo')).then(
-	() => {
-		console.log('Connect DB successfully');
-	},
-	(err) => {
-		console.log('Connect DB failed')
-	}
-);
+// mongoose.connect(config('database.mongo')).then(
+// 	() => {
+// 		console.log('Connect DB successfully');
+// 	},
+// 	(err) => {
+// 		console.log('Connect DB failed')
+// 	}
+// );
+mongoose.connect('mongodb://admins:admins@ds059155.mlab.com:59155/firstapp').then(
+		()=> {
+			console.log('Connect DB successfully');
+		}
+		(err) => {
+			console.log('Connect DB failed')
+		}
+	);
+
 
 
 let app = express()
+
+
+app.listen(process.env.PORT || 3000, () => console.log(server is running));
 var sessionStore = new session.MemoryStore;
 require('../config/passport')(passport);
 // using body parser for form data
